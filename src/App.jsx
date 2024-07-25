@@ -1,3 +1,7 @@
+import Button from "./Components/Button";
+import FriendsList from "./Components/FriendsList";
+import Sidebar from "./Components/Sidebar";
+
 const initialFriends = [
   {
     id: 118836,
@@ -20,7 +24,14 @@ const initialFriends = [
 ];
 
 function App() {
-  return <></>;
+  return (
+    <div className="app">
+      <Sidebar>
+        <FriendsList initialFriends={initialFriends} />
+        <Button>Add Friend</Button>
+      </Sidebar>
+    </div>
+  );
 }
 
 export default App;
