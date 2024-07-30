@@ -2,6 +2,8 @@ import { useState } from "react";
 import Button from "./Components/Button";
 import FriendsList from "./Components/FriendsList";
 import Sidebar from "./Components/Sidebar";
+import FormAddFriend from "./Components/FormAddFriend";
+import FormSplitBill from "./Components/FormSplitBill";
 
 const initialFriends = [
   {
@@ -26,12 +28,17 @@ const initialFriends = [
 
 function App() {
   const [friendsList, setFriendsList] = useState(initialFriends);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="app">
       <Sidebar>
         <FriendsList friendsList={friendsList} />
-        <Button>Add Friend</Button>
+        {isOpen && <FormAddFriend />}
+        <Button onClick={() => setIsOpen((prev) => !prev)}>
+          {isOpen ? "Close" : "Add Friend"}
+        </Button>
       </Sidebar>
+      <FormSplitBill />
     </div>
   );
 }
