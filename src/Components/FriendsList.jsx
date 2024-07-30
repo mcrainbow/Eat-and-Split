@@ -1,9 +1,9 @@
 import Friend from "./Friend";
 
-function FriendsList({ initialFriends }) {
+function FriendsList({ friendsList }) {
   return (
     <ul>
-      {initialFriends.map((item) => (
+      {friendsList.map((item) => (
         <Friend key={item.id} friend={item} />
       ))}
     </ul>

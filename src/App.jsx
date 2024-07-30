@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "./Components/Button";
 import FriendsList from "./Components/FriendsList";
 import Sidebar from "./Components/Sidebar";
@@ -24,10 +25,11 @@ const initialFriends = [
 ];
 
 function App() {
+  const [friendsList, setFriendsList] = useState(initialFriends);
   return (
     <div className="app">
       <Sidebar>
-        <FriendsList initialFriends={initialFriends} />
+        <FriendsList friendsList={friendsList} />
         <Button>Add Friend</Button>
       </Sidebar>
     </div>
