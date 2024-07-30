@@ -29,16 +29,43 @@ const initialFriends = [
 function App() {
   const [friendsList, setFriendsList] = useState(initialFriends);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedFriend, setSelectedFriend] = useState(null);
+
+  function handleSplitBill(value) {
+    setFriendsList((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    );
+
+    setSelectedFriend(null);
+  }
+
   return (
     <div className="app">
       <Sidebar>
-        <FriendsList friendsList={friendsList} />
-        {isOpen && <FormAddFriend />}
+        <FriendsList
+          friendsList={friendsList}
+          setSelectedFriend={setSelectedFriend}
+        />
+        {isOpen && (
+          <FormAddFriend
+            setFriendsList={setFriendsList}
+            setIsOpen={setIsOpen}
+          />
+        )}
         <Button onClick={() => setIsOpen((prev) => !prev)}>
           {isOpen ? "Close" : "Add Friend"}
         </Button>
       </Sidebar>
-      <FormSplitBill />
+      {selectedFriend && (
+        <FormSplitBill
+          selectedFriend={selectedFriend}
+          onSplitBill={handleSplitBill}
+        />
+      )}
     </div>
   );
 }
